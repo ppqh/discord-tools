@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>めじこんさばのつーる</title>
+    <style>
+        /* ===== リセット & ベース ===== */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: #1e1e2f;
+            font-family: 'Segoe UI', 'Helvetica Neue', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 2rem 1rem;
+        }
+
+        /* ===== メインコンテナ ===== */
+        .container {
+            background: #2d2d44;
+            padding: 2.5rem;
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+            width: 100%;
+            max-width: 720px;
+            color: #eee;
+        }
+
+        /* ===== ヘッダー ===== */
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 0.25rem;
+            color: #7289da;
+        }
+
+        .sub {
+            color: #aaa;
+            font-size: 0.95rem;
+            margin-bottom: 2rem;
+        }
+
+        /* ===== ツールグリッド ===== */
+        .tool-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        /* ===== ツールカード（クリッカブル） ===== */
+        .tool-card {
+            background: #1e1e32;
+            border-radius: 12px;
+            padding: 1.25rem 1.5rem;
+            border-left: 4px solid #7289da;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.2s, transform 0.1s, box-shadow 0.2s;
+            text-decoration: none;
+            color: #eee;
+            cursor: pointer;
+        }
+
+        .tool-card:hover {
+            background: #2a2a42;
+            transform: translateX(4px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .tool-card .info h2 {
+            font-size: 1.1rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .tool-card .info p {
+            font-size: 0.85rem;
+            color: #aaa;
+        }
+
+        /* ===== バッジ ===== */
+        .tool-card .badge {
+            background: #7289da;
+            color: #fff;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+
+        .tool-card .badge.soon {
+            background: #555;
+        }
+
+        /* ===== フッター ===== */
+        .footer {
+            margin-top: 2.5rem;
+            font-size: 0.75rem;
+            color: #555;
+            text-align: center;
+        }
+
+        .footer a {
+            color: #7289da;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* ===== レスポンシブ ===== */
+        @media (max-width: 480px) {
+            .container {
+                padding: 1.5rem;
+            }
+            h1 {
+                font-size: 1.5rem;
+            }
+            .tool-card {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+            .tool-card .badge {
+                align-self: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- ===== ヘッダー ===== -->
+        <h1>めじこんさばのツール</h1>
+        <p class="sub">discordのつーるをまとめてます</p>
+
+        <!-- ===== ツール一覧 ===== -->
+        <div class="tool-grid">
+
+            <!-- ===== ツール1: Discord Token Checker ===== -->
+            <a href="https://99399.github.io/discord-token-checker/" class="tool-card">
+                <div class="info">
+                    <h2></h2>Discord Token Checker</h2>
+                    <p>tokenが有効かを確認できます</p>
+                </div>
+                <span class="badge">公開中</span>
+            </a>
+
+            <!-- ===== ツール2: サーバー監視ダッシュボード（準備中） ===== -->
+            <a href="#" class="tool-card" style="opacity: 0.6; pointer-events: none; border-left-color: #555;">
+                <div class="info">
+                    <h2>Raider</h2>
+                    <p>tokenとかを使ってspamができます</p>
+                </div>
+                <span class="badge soon">作成中</span>
+            </a>
+
+            <!-- ===== ツール3: Botログビュワー（準備中） ===== -->
+            <a href="#" class="tool-card" style="opacity: 0.6; pointer-events: none; border-left-color: #555;">
+                <div class="info">
+                    <h2>UserID Checker</h2>
+                    <p>指定したidが使えるかどうかを確認します</p>
+                </div>
+                <span class="badge soon">たぶんそのうち作る</span>
+            </a>
+
+            <!-- ===== ツール4: 今後追加予定（プレースホルダー） ===== -->
+            <a href="#" class="tool-card" style="opacity: 0.4; pointer-events: none; border-left-color: #333;">
+                <div class="info">
+                    <h2>なに作るかかんがえる</h2>
+                    <p>あうあう</p>
+                </div>
+                <span class="badge soon">--</span>
+            </a>
+
+        </div>
+
+        <!-- ===== フッター ===== -->
+        <div class="footer">
+            気分になったらいろいろ作るかも &nbsp;·&nbsp;
+            GitHub: <a href="https://github.com/ppqh" target="_blank">@7724</a>
+        </div>
+    </div>
+
+</body>
+</html>
