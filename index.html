@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Token Manager</title>
+    <title>Discord Tools</title>
 
     <link href="https://fonts.googleapis.com/css2?family=Mochiy+Pop+One&family=Kiwi+Maru&display=swap" rel="stylesheet">
 
@@ -16,432 +16,126 @@
         body {
             background: #1e1e2f;
             font-family: 'Kiwi Maru', 'Segoe UI', sans-serif;
+            padding: 2rem 1rem;
+            color: #eee;
+            min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
-            padding: 2rem 1rem;
         }
         .container {
-            background: #2d2d44;
-            padding: 2.5rem;
-            border-radius: 16px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+            max-width: 960px;
             width: 100%;
-            max-width: 800px;
-            color: #eee;
+            margin: 0 auto;
         }
 
         /* ===== ヘッダー ===== */
-        .header-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        .header .logo {
+            font-family: 'Mochiy Pop One', sans-serif;
+            font-size: 3rem;
+            color: #ffb3c6;
+            letter-spacing: 4px;
             margin-bottom: 0.25rem;
         }
-        h1 {
-            font-family: 'Mochiy Pop One', sans-serif;
-            font-size: 1.8rem;
-            color: #ffb3c6;
-            letter-spacing: 2px;
+        .header .logo .accent {
+            color: #7bed9f;
         }
-        .sub {
-            color: #ccc;
-            font-size: 0.95rem;
-            margin-bottom: 1.5rem;
+        .header p {
+            color: #aaa;
+            font-size: 1.1rem;
         }
-
-        /* ===== ページ切替タブ ===== */
-        .tab-bar {
-            display: flex;
-            gap: 0.5rem;
-            margin-bottom: 1.5rem;
-            border-bottom: 2px solid #333;
-            padding-bottom: 0.5rem;
-        }
-        .tab-bar button {
-            background: transparent;
-            color: #888;
-            border: none;
-            padding: 0.5rem 1.2rem;
-            border-radius: 8px 8px 0 0;
-            font-size: 0.95rem;
-            font-family: 'Mochiy Pop One', sans-serif;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-        .tab-bar button:hover {
-            color: #eee;
-            background: #38385a;
-        }
-        .tab-bar button.active {
-            color: #ffb3c6;
-            background: #38385a;
-            border-bottom: 3px solid #ffb3c6;
-        }
-
-        /* ===== ページ ===== */
-        .page {
-            display: none;
-        }
-        .page.active {
-            display: block;
-        }
-
-        /* ===== 入力エリア ===== */
-        .input-group {
-            display: flex;
-            flex-direction: column;
-            gap: 0.75rem;
-            margin-bottom: 1rem;
-        }
-        input[type="text"] {
-            background: #1e1e32;
-            border: 2px solid #444;
-            padding: 0.75rem 1rem;
-            border-radius: 12px;
-            color: #fff;
-            font-size: 0.95rem;
-            font-family: 'Kiwi Maru', sans-serif;
-            outline: none;
-            width: 100%;
-            transition: border-color 0.3s;
-        }
-        input[type="text"]:focus {
-            border-color: #ffb3c6;
-        }
-        input[type="text"]::placeholder {
-            color: #666;
-        }
-
-        .btn-row {
-            display: flex;
-            gap: 0.75rem;
-        }
-        .btn-row button {
+        .header .badge {
+            display: inline-block;
             background: #ffb3c6;
             color: #1e1e2f;
-            border: none;
-            padding: 0.75rem;
-            border-radius: 12px;
-            font-size: 1rem;
-            font-family: 'Mochiy Pop One', sans-serif;
-            font-weight: bold;
-            cursor: pointer;
-            transition: background 0.2s, transform 0.1s;
-            flex: 1;
-        }
-        .btn-row button:hover {
-            background: #ff8fab;
-            transform: scale(1.02);
-        }
-        .btn-row button:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-            transform: none;
-        }
-        .btn-row button.save-btn {
-            background: #7bed9f;
-            flex: 0.5;
-        }
-        .btn-row button.save-btn:hover {
-            background: #5cdb8a;
-        }
-
-        /* ===== Token一覧（管理ページ） ===== */
-        .token-list {
-            margin-top: 1rem;
-            max-height: 400px;
-            overflow-y: auto;
-        }
-        .token-item {
-            background: #1e1e32;
-            border-radius: 10px;
-            padding: 0.75rem 1rem;
-            margin-bottom: 0.5rem;
-            border-left: 4px solid #555;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            transition: background 0.2s;
-        }
-        .token-item:hover {
-            background: #2a2a42;
-        }
-        .token-item .token-info {
-            flex: 1;
-            min-width: 120px;
-        }
-        .token-item .token-info .token-masked {
-            font-family: 'Courier New', monospace;
-            font-size: 0.8rem;
-            color: #aaa;
-            word-break: break-all;
-        }
-        .token-item .token-info .token-status {
+            padding: 0.2rem 1.2rem;
+            border-radius: 20px;
             font-size: 0.7rem;
-            display: flex;
-            align-items: center;
-            gap: 0.4rem;
-            margin-top: 0.2rem;
-        }
-        .token-item .token-info .token-status .dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            display: inline-block;
-        }
-        .token-item .token-info .token-status .dot.valid { background: #7bed9f; }
-        .token-item .token-info .token-status .dot.invalid { background: #ff6b6b; }
-        .token-item .token-info .token-status .dot.unknown { background: #feca57; }
-        .token-item .token-info .token-status .dot.checking {
-            background: #74b9ff;
-            animation: pulse 0.8s infinite;
-        }
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.3; }
+            font-family: 'Mochiy Pop One', sans-serif;
+            margin-top: 0.5rem;
         }
 
-        .token-item .token-actions {
-            display: flex;
-            gap: 0.4rem;
-            flex-wrap: wrap;
+        /* ===== ツールグリッド ===== */
+        .tool-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
         }
-        .token-item .token-actions button {
-            background: #555;
+
+        .tool-card {
+            background: #2d2d44;
+            border-radius: 16px;
+            padding: 1.5rem;
+            border: 1px solid #444;
+            transition: all 0.3s;
+            text-decoration: none;
             color: #eee;
-            border: none;
-            padding: 0.25rem 0.7rem;
-            border-radius: 8px;
-            font-size: 0.65rem;
+            display: block;
+            position: relative;
+            overflow: hidden;
+        }
+        .tool-card:hover {
+            border-color: #ffb3c6;
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(255, 179, 198, 0.15);
+        }
+        .tool-card .icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+        .tool-card .name {
             font-family: 'Mochiy Pop One', sans-serif;
-            cursor: pointer;
-            transition: background 0.2s;
-            white-space: nowrap;
-        }
-        .token-item .token-actions button:hover { background: #666; }
-        .token-item .token-actions button.load-btn { background: #74b9ff; color: #1e1e2f; }
-        .token-item .token-actions button.load-btn:hover { background: #5a9fd4; }
-        .token-item .token-actions button.delete-btn:hover { background: #ff6b6b; color: #1e1e2f; }
-        .token-item .token-actions button.check-btn { background: #feca57; color: #1e1e2f; }
-        .token-item .token-actions button.check-btn:hover { background: #f0b830; }
-
-        .no-tokens {
-            text-align: center;
-            color: #555;
-            padding: 1rem;
-            font-size: 0.9rem;
-        }
-
-        /* ===== 一括コピーページ ===== */
-        .copy-all-btn {
-            background: #7bed9f;
-            color: #1e1e2f;
-            border: none;
-            padding: 0.75rem;
-            border-radius: 12px;
-            font-size: 1rem;
-            font-family: 'Mochiy Pop One', sans-serif;
-            font-weight: bold;
-            cursor: pointer;
-            transition: background 0.2s;
-            width: 100%;
-            margin-bottom: 1rem;
-        }
-        .copy-all-btn:hover {
-            background: #5cdb8a;
-        }
-        .copy-all-btn:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-        }
-
-        .copy-token-item {
-            background: #1e1e32;
-            border-radius: 10px;
-            padding: 0.6rem 1rem;
-            margin-bottom: 0.4rem;
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            border-left: 3px solid #555;
-            transition: background 0.2s;
-        }
-        .copy-token-item:hover {
-            background: #2a2a42;
-        }
-        .copy-token-item .avatar-small {
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            border: 2px solid #ffb3c6;
-            object-fit: cover;
-            flex-shrink: 0;
-        }
-        .copy-token-item .info {
-            flex: 1;
-            min-width: 0;
-        }
-        .copy-token-item .info .name {
-            font-size: 0.85rem;
+            font-size: 1.1rem;
             color: #ffb3c6;
+            margin-bottom: 0.25rem;
+        }
+        .tool-card .desc {
+            font-size: 0.85rem;
+            color: #aaa;
+            line-height: 1.5;
+        }
+        .tool-card .status {
+            display: inline-block;
+            font-size: 0.6rem;
+            padding: 0.15rem 0.7rem;
+            border-radius: 12px;
+            margin-top: 0.75rem;
             font-family: 'Mochiy Pop One', sans-serif;
         }
-        .copy-token-item .info .id-text {
-            font-size: 0.7rem;
-            color: #666;
-            font-family: 'Courier New', monospace;
-        }
-        .copy-token-item .info .token-text {
-            font-size: 0.7rem;
-            color: #888;
-            font-family: 'Courier New', monospace;
-            word-break: break-all;
-        }
-        .copy-token-item .status-badge {
-            font-size: 0.6rem;
-            padding: 0.1rem 0.5rem;
-            border-radius: 10px;
-            font-weight: bold;
-            white-space: nowrap;
-        }
-        .copy-token-item .status-badge.valid {
+        .tool-card .status.public {
             background: #7bed9f;
             color: #1e1e2f;
         }
-        .copy-token-item .status-badge.invalid {
-            background: #ff6b6b;
-            color: #1e1e2f;
-        }
-        .copy-token-item .status-badge.unknown {
+        .tool-card .status.beta {
             background: #feca57;
             color: #1e1e2f;
         }
-
-        .copy-notice {
-            position: fixed;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: #7bed9f;
-            color: #1e1e2f;
-            padding: 0.75rem 2rem;
-            border-radius: 12px;
-            font-weight: bold;
-            font-family: 'Mochiy Pop One', sans-serif;
-            opacity: 0;
-            transition: opacity 0.3s;
+        .tool-card .status.soon {
+            background: #555;
+            color: #888;
+        }
+        .tool-card .coming-soon {
+            opacity: 0.5;
             pointer-events: none;
-            z-index: 999;
         }
-        .copy-notice.show {
-            opacity: 1;
+        .tool-card .coming-soon .status {
+            background: #555;
+            color: #888;
         }
 
-        /* ===== プロフィールモーダル ===== */
-        .profile-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            z-index: 1000;
-            justify-content: center;
-            align-items: center;
-            padding: 1rem;
-        }
-        .profile-modal.show {
-            display: flex;
-        }
-        .profile-modal .modal-content {
-            background: #2d2d44;
-            border-radius: 16px;
-            padding: 2rem;
-            max-width: 500px;
-            width: 100%;
-            max-height: 90vh;
-            overflow-y: auto;
-            position: relative;
-        }
-        .profile-modal .modal-content .close-btn {
-            position: absolute;
-            top: 12px;
-            right: 16px;
-            background: none;
-            border: none;
-            color: #888;
-            font-size: 1.8rem;
-            cursor: pointer;
-            font-family: 'Kiwi Maru', sans-serif;
-        }
-        .profile-modal .modal-content .close-btn:hover {
-            color: #fff;
-        }
-        .profile-modal .modal-content .header {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 1rem;
-        }
-        .profile-modal .modal-content .header .avatar {
-            width: 70px;
-            height: 70px;
-            border-radius: 50%;
-            border: 3px solid #ffb3c6;
-            object-fit: cover;
-            flex-shrink: 0;
-        }
-        .profile-modal .modal-content .header .name-area .username {
-            font-family: 'Mochiy Pop One', sans-serif;
-            font-size: 1.2rem;
-            color: #ffb3c6;
-        }
-        .profile-modal .modal-content .header .name-area .global-name {
-            font-size: 0.9rem;
-            color: #aaa;
-        }
-        .profile-modal .modal-content .header .name-area .id {
-            font-size: 0.8rem;
-            color: #666;
-            font-family: 'Courier New', monospace;
-        }
-        .profile-modal .modal-content .details {
-            border-top: 1px solid #333;
-            padding-top: 0.75rem;
-        }
-        .profile-modal .modal-content .details .row {
-            display: flex;
-            justify-content: space-between;
-            padding: 0.3rem 0;
-            font-size: 0.9rem;
-        }
-        .profile-modal .modal-content .details .row .label {
-            color: #888;
-            font-size: 0.8rem;
-        }
-        .profile-modal .modal-content .details .row .value {
-            color: #ddd;
-            text-align: right;
-            word-break: break-all;
-            max-width: 60%;
-        }
-        .profile-modal .modal-content .error-msg {
-            color: #ff6b6b;
-            text-align: center;
-            padding: 1rem 0;
-        }
-
+        /* ===== フッター ===== */
         .footer {
-            margin-top: 1.5rem;
+            text-align: center;
             font-size: 0.75rem;
             color: #555;
-            text-align: center;
+            border-top: 1px solid #333;
+            padding-top: 1.5rem;
+            margin-top: 1rem;
         }
         .footer a {
             color: #ffb3c6;
@@ -450,471 +144,86 @@
         .footer a:hover {
             text-decoration: underline;
         }
-
-        .spinner {
-            display: inline-block;
-            width: 14px;
-            height: 14px;
-            border: 2px solid #1e1e2f;
-            border-top-color: transparent;
-            border-radius: 50%;
-            animation: spin 0.6s linear infinite;
-            vertical-align: middle;
-            margin-right: 4px;
+        .footer .social {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 0.5rem;
         }
-        @keyframes spin {
-            to { transform: rotate(360deg); }
+        .footer .social a {
+            color: #666;
+            font-size: 0.85rem;
+            transition: color 0.2s;
+        }
+        .footer .social a:hover {
+            color: #ffb3c6;
         }
 
-        @media (max-width: 480px) {
-            .container { padding: 1.5rem; }
-            h1 { font-size: 1.4rem; }
-            .btn-row { flex-direction: column; }
-            .btn-row button.save-btn { flex: 1; }
-            .token-item { flex-direction: column; align-items: stretch; }
-            .token-item .token-actions { justify-content: flex-end; }
-            .profile-modal .modal-content { padding: 1.5rem; }
-            .profile-modal .modal-content .header { flex-direction: column; text-align: center; }
-            .profile-modal .modal-content .details .row { flex-direction: column; align-items: center; text-align: center; }
-            .profile-modal .modal-content .details .row .value { max-width: 100%; text-align: center; }
-            .copy-token-item { flex-wrap: wrap; }
-            .tab-bar button { font-size: 0.8rem; padding: 0.4rem 0.8rem; }
+        /* ===== レスポンシブ ===== */
+        @media (max-width: 640px) {
+            .header .logo {
+                font-size: 2.2rem;
+            }
+            .tool-grid {
+                grid-template-columns: 1fr;
+            }
+            .header p {
+                font-size: 0.95rem;
+            }
         }
     </style>
 </head>
 <body>
 
     <div class="container">
+
         <!-- ===== ヘッダー ===== -->
-        <div class="header-row">
-            <h1>Token Manager</h1>
-        </div>
-        <p class="sub">Tokenを管理できます</p>
-
-        <!-- ===== タブ ===== -->
-        <div class="tab-bar">
-            <button class="active" data-page="manage">Manage</button>
-            <button data-page="copy">Copy All</button>
+        <div class="header">
+            <div class="logo">Discord<span class="accent">Tools</span></div>
+            <p>めじこんさばのつーる</p>
+            <span class="badge">7 Tools Available</span>
         </div>
 
-        <!-- ===== ページ1: 管理 ===== -->
-        <div class="page active" id="page-manage">
-            <div class="input-group">
-                <input type="text" id="tokenInput" placeholder="Token を貼り付けてね" />
-                <div class="btn-row">
-                    <button id="addBtn">Add & View</button>
-                    <button id="saveBtn" class="save-btn">Save</button>
-                </div>
+        <!-- ===== ツールグリッド ===== -->
+        <div class="tool-grid">
+
+            <!-- 2. Token Checker -->
+            <a href="https://99399.github.io/discord-token-checker/" class="tool-card">
+                <div class="name">Token Checker</div>
+                <div class="desc">TOkenが生きてるかを確認</div>
+                <span class="status public">公開中</span>
+            </a>
+
+            <!-- 3. Profile Viewer -->
+            <a href="https://ppqh.github.io/discord-tools/profile-viewer/" class="tool-card">
+                <div class="name">Profile Viewer</div>
+                <div class="desc">複数Tokenを管理、Tokenからプロフィールを表示</div>
+                <span class="status public">公開中</span>
+            </a>
+
+            <!-- 8. 準備中（Coming Soon） -->
+            <div class="tool-card coming-soon">
+                <div class="name">More Tools</div>
+                <div class="desc">たぶんなんかつくる</div>
+                <span class="status soon">準備中</span>
             </div>
 
-            <div id="tokenList" class="token-list">
-                <div class="no-tokens">No tokens saved</div>
-            </div>
         </div>
 
-        <!-- ===== ページ2: 一括コピー ===== -->
-        <div class="page" id="page-copy">
-            <button class="copy-all-btn" id="copyAllBtn">Copy All Valid Tokens</button>
-            <div id="copyList" class="token-list">
-                <div class="no-tokens">No tokens saved</div>
-            </div>
-        </div>
-
+        <!-- ===== フッター ===== -->
         <div class="footer">
-            <a href="https://99399.github.io/discord-token-checker/" target="_blank">Token-Checker</a>
-            &nbsp;|&nbsp;
-            <a href="https://99399.github.io/profile/" target="_blank">Token-Profile-Viewer</a>
-        </div>
-    </div>
-
-    <!-- ===== コピー通知 ===== -->
-    <div class="copy-notice" id="copyNotice">Copied!</div>
-
-    <!-- ===== プロフィールモーダル ===== -->
-    <div class="profile-modal" id="profileModal">
-        <div class="modal-content">
-            <button class="close-btn" id="closeModalBtn">&times;</button>
-            <div id="modalBody">
-                <div class="header">
-                    <img class="avatar" id="modalAvatar" src="" alt="avatar" />
-                    <div class="name-area">
-                        <div class="username" id="modalUsername">--</div>
-                        <div class="global-name" id="modalGlobalName">--</div>
-                        <div class="id" id="modalUserId">ID: --</div>
-                    </div>
-                </div>
-                <div class="details">
-                    <div class="row"><span class="label">Created At</span><span class="value" id="modalCreatedAt">--</span></div>
-                    <div class="row"><span class="label">Bot</span><span class="value" id="modalIsBot">--</span></div>
-                    <div class="row"><span class="label">Flags</span><span class="value" id="modalFlags">--</span></div>
-                    <div class="row"><span class="label">Banner</span><span class="value" id="modalBanner">--</span></div>
-                    <div class="row"><span class="label">Token Type</span><span class="value" id="modalTokenType">--</span></div>
-                </div>
+            <div>DiscordTools &copy; 2025</div>
+            <div class="social">
+                <a href="https://github.com/99399" target="_blank">GitHub</a>
+                <a href="https://discord.gg/medicon" target="_blank">Discord</a>
+                <a href="#" style="color:#555;">Contact</a>
+            </div>
+            <div style="margin-top:0.5rem;font-size:0.65rem;color:#444;">
+                Support Server .gg/medicon
             </div>
         </div>
+
     </div>
-
-    <script>
-        // ===== DOM要素 =====
-        const tokenInput = document.getElementById('tokenInput');
-        const addBtn = document.getElementById('addBtn');
-        const saveBtn = document.getElementById('saveBtn');
-        const tokenList = document.getElementById('tokenList');
-        const copyList = document.getElementById('copyList');
-        const copyAllBtn = document.getElementById('copyAllBtn');
-        const copyNotice = document.getElementById('copyNotice');
-
-        // タブ
-        const tabs = document.querySelectorAll('.tab-bar button');
-        const pages = {
-            manage: document.getElementById('page-manage'),
-            copy: document.getElementById('page-copy')
-        };
-
-        // モーダル
-        const profileModal = document.getElementById('profileModal');
-        const closeModalBtn = document.getElementById('closeModalBtn');
-        const modalBody = document.getElementById('modalBody');
-
-        // ===== タブ切替 =====
-        tabs.forEach(tab => {
-            tab.addEventListener('click', () => {
-                tabs.forEach(t => t.classList.remove('active'));
-                tab.classList.add('active');
-                const page = tab.dataset.page;
-                Object.keys(pages).forEach(key => {
-                    pages[key].classList.toggle('active', key === page);
-                });
-                if (page === 'copy') renderCopyPage();
-            });
-        });
-
-        // ===== ストレージ操作 =====
-        function getTokens() {
-            try {
-                const data = localStorage.getItem('discord_tokens');
-                return data ? JSON.parse(data) : [];
-            } catch {
-                return [];
-            }
-        }
-
-        function saveTokens(tokens) {
-            localStorage.setItem('discord_tokens', JSON.stringify(tokens));
-        }
-
-        function maskToken(token) {
-            if (token.length <= 12) return token;
-            return token.substring(0, 8) + '...' + token.substring(token.length - 6);
-        }
-
-        function detectTokenType(token) {
-            if (token.startsWith('MTE') || token.startsWith('OTY')) return 'Bot';
-            if (token.startsWith('ND') || token.startsWith('MZ')) return 'User';
-            return 'Unknown';
-        }
-
-        // ===== Token有効性チェック =====
-        async function checkTokenStatus(token) {
-            try {
-                const response = await fetch('https://discord.com/api/v10/users/@me', {
-                    headers: { 'Authorization': token }
-                });
-                return response.ok;
-            } catch {
-                return false;
-            }
-        }
-
-        // ===== プロフィール取得 =====
-        async function fetchProfile(token) {
-            const response = await fetch('https://discord.com/api/v10/users/@me', {
-                headers: { 'Authorization': token }
-            });
-            if (!response.ok) throw new Error('Token無効');
-            return await response.json();
-        }
-
-        // ===== 管理ページ：一覧表示 =====
-        function renderTokenList() {
-            const tokens = getTokens();
-            if (tokens.length === 0) {
-                tokenList.innerHTML = '<div class="no-tokens">No tokens saved</div>';
-                return;
-            }
-
-            let html = '';
-            tokens.forEach((token, index) => {
-                const masked = maskToken(token);
-                const type = detectTokenType(token);
-                html += `
-                    <div class="token-item" data-index="${index}">
-                        <div class="token-info">
-                            <div class="token-masked">${masked}</div>
-                            <div class="token-status">
-                                <span class="dot unknown" id="dot-${index}"></span>
-                                <span id="statusText-${index}">Unknown</span>
-                                <span style="color:#666;font-size:0.65rem;margin-left:0.5rem;">${type}</span>
-                            </div>
-                        </div>
-                        <div class="token-actions">
-                            <button class="check-btn" onclick="checkToken(${index})">Check</button>
-                            <button class="load-btn" onclick="loadToken(${index})">Load</button>
-                            <button class="delete-btn" onclick="deleteToken(${index})">Delete</button>
-                        </div>
-                    </div>
-                `;
-            });
-            tokenList.innerHTML = html;
-
-            tokens.forEach((token, index) => {
-                setTimeout(() => checkTokenStatusAsync(index, token), 100 * index);
-            });
-        }
-
-        // ===== ステータスチェック（非同期） =====
-        async function checkTokenStatusAsync(index, token) {
-            const dot = document.getElementById(`dot-${index}`);
-            const text = document.getElementById(`statusText-${index}`);
-            if (!dot) return;
-
-            dot.className = 'dot checking';
-            text.textContent = 'Checking...';
-
-            const valid = await checkTokenStatus(token);
-            dot.className = `dot ${valid ? 'valid' : 'invalid'}`;
-            text.textContent = valid ? 'Valid' : 'Invalid';
-        }
-
-        // ===== 管理：チェックボタン =====
-        window.checkToken = async function(index) {
-            const tokens = getTokens();
-            if (index >= tokens.length) return;
-            const token = tokens[index];
-            const dot = document.getElementById(`dot-${index}`);
-            const text = document.getElementById(`statusText-${index}`);
-
-            dot.className = 'dot checking';
-            text.textContent = 'Checking...';
-
-            const valid = await checkTokenStatus(token);
-            dot.className = `dot ${valid ? 'valid' : 'invalid'}`;
-            text.textContent = valid ? 'Valid' : 'Invalid';
-        };
-
-        // ===== 管理：ロードボタン =====
-        window.loadToken = async function(index) {
-            const tokens = getTokens();
-            if (index >= tokens.length) return;
-            const token = tokens[index];
-            tokenInput.value = token;
-            await viewProfile(token);
-        };
-
-        // ===== 管理：削除ボタン =====
-        window.deleteToken = function(index) {
-            if (!confirm('このTokenを削除しますか？')) return;
-            const tokens = getTokens();
-            tokens.splice(index, 1);
-            saveTokens(tokens);
-            renderTokenList();
-        };
-
-        // ===== プロフィール表示（モーダル） =====
-        async function viewProfile(token) {
-            modalBody.innerHTML = '<div style="text-align:center;padding:2rem;"><span class="spinner"></span> Loading...</div>';
-            profileModal.classList.add('show');
-
-            try {
-                const data = await fetchProfile(token);
-                const type = detectTokenType(token);
-                const id = data.id;
-                const name = data.username || '--';
-                const global = data.global_name || '--';
-                const discriminator = data.discriminator || '0000';
-                const avatarHash = data.avatar;
-                const avatarUrl = avatarHash
-                    ? `https://cdn.discordapp.com/avatars/${id}/${avatarHash}.png?size=256`
-                    : `https://cdn.discordapp.com/embed/avatars/${parseInt(discriminator) % 5}.png`;
-                const createdAtDate = new Date((id / 4194304) + 1420070400000);
-                const createdAtStr = createdAtDate.toLocaleString('ja-JP');
-                const bot = data.bot ? 'Yes' : 'No';
-
-                const flagMap = {
-                    1: 'Discord Employee', 2: 'Partnered Server Owner', 4: 'HypeSquad Events',
-                    8: 'Bug Hunter Level 1', 16: 'House Bravery', 32: 'House Brilliance',
-                    64: 'House Balance', 128: 'Early Supporter', 256: 'Team User',
-                    512: 'Bug Hunter Level 2', 1024: 'Verified Bot', 2048: 'Early Verified Bot Developer',
-                    4096: 'Discord Certified Moderator', 8192: 'Bot HTTP Interactions'
-                };
-                const flagsValue = data.public_flags || 0;
-                const flagList = [];
-                for (const [bit, name] of Object.entries(flagMap)) {
-                    if (flagsValue & parseInt(bit)) flagList.push(name);
-                }
-                const flagStr = flagList.length > 0 ? flagList.join(', ') : 'None';
-
-                const bannerHash = data.banner;
-                const bannerUrl = bannerHash
-                    ? `https://cdn.discordapp.com/banners/${id}/${bannerHash}.png?size=256`
-                    : 'None';
-
-                modalBody.innerHTML = `
-                    <div class="header">
-                        <img class="avatar" src="${avatarUrl}" alt="avatar" />
-                        <div class="name-area">
-                            <div class="username">${name}#${discriminator}</div>
-                            <div class="global-name">${global}</div>
-                            <div class="id">ID: ${id}</div>
-                        </div>
-                    </div>
-                    <div class="details">
-                        <div class="row"><span class="label">Created At</span><span class="value">${createdAtStr}</span></div>
-                        <div class="row"><span class="label">Bot</span><span class="value">${bot}</span></div>
-                        <div class="row"><span class="label">Flags</span><span class="value">${flagStr}</span></div>
-                        <div class="row"><span class="label">Banner</span><span class="value">${bannerUrl}</span></div>
-                        <div class="row"><span class="label">Token Type</span><span class="value">${type}</span></div>
-                    </div>
-                `;
-            } catch (error) {
-                modalBody.innerHTML = `<div class="error-msg">Error: ${error.message}</div>`;
-            }
-        }
-
-        // ===== モーダル閉じる =====
-        closeModalBtn.addEventListener('click', () => profileModal.classList.remove('show'));
-        profileModal.addEventListener('click', (e) => {
-            if (e.target === profileModal) profileModal.classList.remove('show');
-        });
-
-        // ===== 追加ボタン =====
-        addBtn.addEventListener('click', async () => {
-            const token = tokenInput.value.trim();
-            if (!token) { alert('Tokenを入力してください'); return; }
-            await viewProfile(token);
-            const tokens = getTokens();
-            if (!tokens.includes(token)) {
-                tokens.push(token);
-                saveTokens(tokens);
-                renderTokenList();
-            }
-        });
-
-        // ===== 保存ボタン =====
-        saveBtn.addEventListener('click', () => {
-            const token = tokenInput.value.trim();
-            if (!token) { alert('Tokenを入力してください'); return; }
-            const tokens = getTokens();
-            if (tokens.includes(token)) { alert('このTokenは既に保存されています'); return; }
-            tokens.push(token);
-            saveTokens(tokens);
-            renderTokenList();
-            tokenInput.value = '';
-            alert('Tokenを保存しました！');
-        });
-
-        // ===== Enterキー =====
-        tokenInput.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter') addBtn.click();
-        });
-
-        // ===== コピーページ：表示 =====
-        async function renderCopyPage() {
-            const tokens = getTokens();
-            if (tokens.length === 0) {
-                copyList.innerHTML = '<div class="no-tokens">No tokens saved</div>';
-                copyAllBtn.disabled = true;
-                return;
-            }
-
-            copyAllBtn.disabled = false;
-            let html = '';
-
-            // 各Tokenの情報を取得
-            const tokenData = [];
-            for (const token of tokens) {
-                try {
-                    const data = await fetchProfile(token);
-                    const id = data.id;
-                    const name = data.username || 'Unknown';
-                    const discriminator = data.discriminator || '0000';
-                    const avatarHash = data.avatar;
-                    const avatarUrl = avatarHash
-                        ? `https://cdn.discordapp.com/avatars/${id}/${avatarHash}.png?size=64`
-                        : `https://cdn.discordapp.com/embed/avatars/${parseInt(discriminator) % 5}.png`;
-                    tokenData.push({ token, id, name, discriminator, avatarUrl, valid: true });
-                } catch {
-                    tokenData.push({ token, id: 'Unknown', name: 'Invalid Token', discriminator: '0000', avatarUrl: '', valid: false });
-                }
-            }
-
-            tokenData.forEach((data, index) => {
-                const masked = maskToken(data.token);
-                const statusClass = data.valid ? 'valid' : 'invalid';
-                const statusText = data.valid ? 'Valid' : 'Invalid';
-                html += `
-                    <div class="copy-token-item">
-                        <img class="avatar-small" src="${data.avatarUrl || 'https://cdn.discordapp.com/embed/avatars/0.png'}" alt="avatar" />
-                        <div class="info">
-                            <div class="name">${data.name}#${data.discriminator}</div>
-                            <div class="id-text">ID: ${data.id}</div>
-                            <div class="token-text">${masked}</div>
-                        </div>
-                        <span class="status-badge ${statusClass}">${statusText}</span>
-                    </div>
-                `;
-            });
-
-            copyList.innerHTML = html;
-        }
-
-        // ===== 一括コピー =====
-        copyAllBtn.addEventListener('click', async () => {
-            const tokens = getTokens();
-            if (tokens.length === 0) {
-                showCopyNotice('No tokens to copy');
-                return;
-            }
-
-            // 有効なTokenだけを抽出
-            const validTokens = [];
-            for (const token of tokens) {
-                const valid = await checkTokenStatus(token);
-                if (valid) validTokens.push(token);
-            }
-
-            if (validTokens.length === 0) {
-                showCopyNotice('No valid tokens to copy');
-                return;
-            }
-
-            const text = validTokens.join('\n');
-            navigator.clipboard.writeText(text).then(() => {
-                showCopyNotice(`Copied ${validTokens.length} valid tokens!`);
-            }).catch(() => {
-                // フォールバック
-                const textarea = document.createElement('textarea');
-                textarea.value = text;
-                document.body.appendChild(textarea);
-                textarea.select();
-                document.execCommand('copy');
-                document.body.removeChild(textarea);
-                showCopyNotice(`Copied ${validTokens.length} valid tokens!`);
-            });
-        });
-
-        function showCopyNotice(msg) {
-            copyNotice.textContent = msg;
-            copyNotice.classList.add('show');
-            clearTimeout(copyNotice._timer);
-            copyNotice._timer = setTimeout(() => {
-                copyNotice.classList.remove('show');
-            }, 2500);
-        }
-
-        // ===== 初期化 =====
-        renderTokenList();
-    </script>
 
 </body>
 </html>
