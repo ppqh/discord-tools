@@ -4,6 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>めじこんさばのつーる</title>
+
+    <!-- ===== Google Fonts（かわいいフォント） ===== -->
+    <link href="https://fonts.googleapis.com/css2?family=Mochiy+Pop+One&family=Kiwi+Maru&display=swap" rel="stylesheet">
+
     <style>
         /* ===== リセット & ベース ===== */
         * {
@@ -14,7 +18,7 @@
 
         body {
             background: #1e1e2f;
-            font-family: 'Segoe UI', 'Helvetica Neue', sans-serif;
+            font-family: 'Kiwi Maru', 'Segoe UI', sans-serif;  /* ← ここに適用 */
             display: flex;
             justify-content: center;
             align-items: center;
@@ -33,15 +37,17 @@
             color: #eee;
         }
 
-        /* ===== ヘッダー ===== */
+        /* ===== ヘッダー（特にかわいく） ===== */
         h1 {
+            font-family: 'Mochiy Pop One', sans-serif;  /* ← タイトルだけ別フォント */
             font-size: 2rem;
             margin-bottom: 0.25rem;
-            color: #7289da;
+            color: #ffb3c6;  /* ピンクに変えてさらにかわいく */
+            letter-spacing: 2px;
         }
 
         .sub {
-            color: #aaa;
+            color: #ccc;
             font-size: 0.95rem;
             margin-bottom: 2rem;
         }
@@ -58,7 +64,7 @@
             background: #1e1e32;
             border-radius: 12px;
             padding: 1.25rem 1.5rem;
-            border-left: 4px solid #7289da;
+            border-left: 4px solid #ffb3c6;  /* ピンクに */
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -75,8 +81,10 @@
         }
 
         .tool-card .info h2 {
+            font-family: 'Mochiy Pop One', sans-serif;  /* ← ツール名もポップに */
             font-size: 1.1rem;
             margin-bottom: 0.2rem;
+            color: #ffb3c6;
         }
 
         .tool-card .info p {
@@ -86,8 +94,8 @@
 
         /* ===== バッジ ===== */
         .tool-card .badge {
-            background: #7289da;
-            color: #fff;
+            background: #ffb3c6;
+            color: #1e1e2f;
             padding: 0.25rem 0.75rem;
             border-radius: 20px;
             font-size: 0.7rem;
@@ -97,6 +105,7 @@
 
         .tool-card .badge.soon {
             background: #555;
+            color: #ccc;
         }
 
         /* ===== フッター ===== */
@@ -108,7 +117,7 @@
         }
 
         .footer a {
-            color: #7289da;
+            color: #ffb3c6;
             text-decoration: none;
         }
 
@@ -140,7 +149,7 @@
     <div class="container">
         <!-- ===== ヘッダー ===== -->
         <h1>めじこんさばのツール</h1>
-        <p class="sub">discordのつーるをまとめてます</p>
+        <p class="sub">discordのつーるをまとめてます✨</p>
 
         <!-- ===== ツール一覧 ===== -->
         <div class="tool-grid">
@@ -148,13 +157,13 @@
             <!-- ===== ツール1: Discord Token Checker ===== -->
             <a href="https://99399.github.io/discord-token-checker/" class="tool-card">
                 <div class="info">
-                    <h2></h2>Discord Token Checker</h2>
+                    <h2>Discord Token Checker</h2>
                     <p>tokenが有効かを確認できます</p>
                 </div>
                 <span class="badge">公開中</span>
             </a>
 
-            <!-- ===== ツール2: サーバー監視ダッシュボード（準備中） ===== -->
+            <!-- ===== ツール2: Raider（作成中） ===== -->
             <a href="#" class="tool-card" style="opacity: 0.6; pointer-events: none; border-left-color: #555;">
                 <div class="info">
                     <h2>Raider</h2>
@@ -163,16 +172,16 @@
                 <span class="badge soon">作成中</span>
             </a>
 
-            <!-- ===== ツール3: Botログビュワー（準備中） ===== -->
+            <!-- ===== ツール3: UserID Checker ===== -->
             <a href="#" class="tool-card" style="opacity: 0.6; pointer-events: none; border-left-color: #555;">
                 <div class="info">
-                    <h2>UserID Checker</h2>
+                    <h2>🔎 UserID Checker</h2>
                     <p>指定したidが使えるかどうかを確認します</p>
                 </div>
                 <span class="badge soon">たぶんそのうち作る</span>
             </a>
 
-            <!-- ===== ツール4: 今後追加予定（プレースホルダー） ===== -->
+            <!-- ===== ツール4: プレースホルダー ===== -->
             <a href="#" class="tool-card" style="opacity: 0.4; pointer-events: none; border-left-color: #333;">
                 <div class="info">
                     <h2>なに作るかかんがえる</h2>
@@ -186,7 +195,7 @@
         <!-- ===== フッター ===== -->
         <div class="footer">
             気分になったらいろいろ作るかも &nbsp;·&nbsp;
-            GitHub: <a href="https://discord.gg/medicon" target="_blank">めじこんさば</a>
+            <a href="https://discord.gg/medicon" target="_blank">めじこんさば</a>
         </div>
     </div>
 
