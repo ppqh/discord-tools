@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Discord Tools</title>
 
-    <link href="https://fonts.googleapis.com/css2?family=Mochiy+Pop+One&family=Kiwi+Maru&display=swap" rel="stylesheet">
+    <!-- Google Fonts: モダンで整ったスタイリッシュなフォントに変更 -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
 
     <style>
         * {
@@ -14,8 +15,8 @@
             padding: 0;
         }
         body {
-            background: #1e1e2f;
-            font-family: 'Kiwi Maru', 'Segoe UI', sans-serif;
+            background: #181824;
+            font-family: 'Noto Sans JP', 'Inter', sans-serif;
             padding: 2rem 1rem;
             color: #eee;
             min-height: 100vh;
@@ -35,110 +36,102 @@
             margin-bottom: 3rem;
         }
         .header .logo {
-            font-family: 'Mochiy Pop One', sans-serif;
-            font-size: 3rem;
-            color: #ffb3c6;
-            letter-spacing: 4px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
+            font-size: 2.8rem;
+            color: #5865F2; /* Discordっぽく青紫系に調整 */
+            letter-spacing: -0.5px;
             margin-bottom: 0.25rem;
         }
         .header .logo .accent {
-            color: #7bed9f;
+            color: #57F287;
         }
         .header p {
             color: #aaa;
-            font-size: 1.1rem;
+            font-size: 1rem;
         }
         .header .badge {
             display: inline-block;
-            background: #ffb3c6;
-            color: #1e1e2f;
-            padding: 0.2rem 1.2rem;
+            background: rgba(88, 101, 242, 0.2);
+            color: #5865F2;
+            border: 1px solid rgba(88, 101, 242, 0.4);
+            padding: 0.2rem 1rem;
             border-radius: 20px;
-            font-size: 0.7rem;
-            font-family: 'Mochiy Pop One', sans-serif;
-            margin-top: 0.5rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-top: 0.75rem;
         }
 
         /* ===== ツールグリッド ===== */
         .tool-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 1.5rem;
+            /* 固定幅で綺麗に整列させる設定 */
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 1.25rem;
             margin-bottom: 3rem;
         }
 
         .tool-card {
-            background: #2d2d44;
-            border-radius: 16px;
+            background: #232433;
+            border-radius: 12px;
             padding: 1.5rem;
-            border: 1px solid #444;
-            transition: all 0.3s;
+            border: 1px solid #33354a;
+            transition: all 0.2s ease;
             text-decoration: none;
             color: #eee;
-            display: block;
-            position: relative;
-            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
         .tool-card:hover {
-            border-color: #ffb3c6;
-            transform: translateY(-4px);
-            box-shadow: 0 8px 24px rgba(255, 179, 198, 0.15);
-        }
-        .tool-card .icon {
-            font-size: 2rem;
-            margin-bottom: 0.5rem;
+            border-color: #5865F2;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
         }
         .tool-card .name {
-            font-family: 'Mochiy Pop One', sans-serif;
             font-size: 1.1rem;
-            color: #ffb3c6;
-            margin-bottom: 0.25rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 0.5rem;
         }
         .tool-card .desc {
             font-size: 0.85rem;
-            color: #aaa;
+            color: #99aab5;
             line-height: 1.5;
+            margin-bottom: 1rem;
         }
         .tool-card .status {
             display: inline-block;
-            font-size: 0.6rem;
-            padding: 0.15rem 0.7rem;
-            border-radius: 12px;
-            margin-top: 0.75rem;
-            font-family: 'Mochiy Pop One', sans-serif;
+            align-self: flex-start;
+            font-size: 0.7rem;
+            font-weight: 600;
+            padding: 0.2rem 0.6rem;
+            border-radius: 6px;
         }
         .tool-card .status.public {
-            background: #7bed9f;
-            color: #1e1e2f;
-        }
-        .tool-card .status.beta {
-            background: #feca57;
-            color: #1e1e2f;
+            background: rgba(87, 242, 135, 0.15);
+            color: #57F287;
         }
         .tool-card .status.soon {
-            background: #555;
-            color: #888;
+            background: rgba(255, 255, 255, 0.05);
+            color: #72767d;
         }
-        .tool-card .coming-soon {
-            opacity: 0.5;
+        .tool-card.coming-soon {
+            opacity: 0.6;
             pointer-events: none;
-        }
-        .tool-card .coming-soon .status {
-            background: #555;
-            color: #888;
         }
 
         /* ===== フッター ===== */
         .footer {
             text-align: center;
             font-size: 0.75rem;
-            color: #555;
-            border-top: 1px solid #333;
+            color: #72767d;
+            border-top: 1px solid #2d2f45;
             padding-top: 1.5rem;
             margin-top: 1rem;
         }
         .footer a {
-            color: #ffb3c6;
+            color: #5865F2;
             text-decoration: none;
         }
         .footer a:hover {
@@ -151,12 +144,8 @@
             margin-top: 0.5rem;
         }
         .footer .social a {
-            color: #666;
+            color: #99aab5;
             font-size: 0.85rem;
-            transition: color 0.2s;
-        }
-        .footer .social a:hover {
-            color: #ffb3c6;
         }
 
         /* ===== レスポンシブ ===== */
@@ -166,9 +155,6 @@
             }
             .tool-grid {
                 grid-template-columns: 1fr;
-            }
-            .header p {
-                font-size: 0.95rem;
             }
         }
     </style>
@@ -187,45 +173,43 @@
         <!-- ===== ツールグリッド ===== -->
         <div class="tool-grid">
 
-            <!-- 2. Token Checker -->
             <a href="https://99399.github.io/discord-token-checker/" class="tool-card">
-                <div class="name">Token Checker</div>
-                <div class="desc">Tokenが生きてるかを確認</div>
+                <div>
+                    <div class="name">Token Checker</div>
+                    <div class="desc">Tokenが生きてるかを確認</div>
+                </div>
                 <span class="status public">公開中</span>
             </a>
 
-            <!-- 3. Profile Viewer -->
             <a href="https://99399.github.io/profile-viewer/" class="tool-card">
-                <div class="name">Token Manager</div>
-                <div class="desc">複数Tokenを管理、Tokenからプロフィールを表示</div>
+                <div>
+                    <div class="name">Token Manager</div>
+                    <div class="desc">複数Tokenを管理、Tokenからプロフィールを表示</div>
+                </div>
                 <span class="status public">公開中</span>
             </a>
 
-                        <!-- 3. Profile Viewer -->
             <a href="https://ppqh.github.io/oni/" class="tool-card">
-                <div class="name">おにさんがおーｗ</div>
-                <div class="desc">おにさんがだいすきなひとにおすすめ</div>
+                <div>
+                    <div class="name">おにさんがおーｗ</div>
+                    <div class="desc">おにさんがだいすきなひとにおすすめ</div>
+                </div>
                 <span class="status public">公開中</span>
             </a>
 
-                    　　 <!-- 3. 地図 -->
             <a href="https://ppqh.github.io/map/" class="tool-card">
-                <div class="name">地図</div>
-                <div class="desc">なんとなく作っただけの地図のサイト</div>
+                <div>
+                    <div class="name">地図</div>
+                    <div class="desc">なんとなく作っただけの地図のサイト</div>
+                </div>
                 <span class="status public">公開中</span>
             </a>
 
-                    　　 <!-- 3. 地図 -->
-            <a href="https://ppqh.github.io/map/" class="tool-card">
-                <div class="name">比較とか</div>
-                <div class="desc">GMO VS ACVR</div>
-                <span class="status public">公開中</span>
-            </a>
-            
-            <!-- 8. 準備中（Coming Soon） -->
             <div class="tool-card coming-soon">
-                <div class="name">More Tools</div>
-                <div class="desc">たぶんなんかつくる</div>
+                <div>
+                    <div class="name">More Tools</div>
+                    <div class="desc">たぶんなんかつくる</div>
+                </div>
                 <span class="status soon">準備中</span>
             </div>
 
@@ -233,12 +217,12 @@
 
         <!-- ===== フッター ===== -->
         <div class="footer">
-            <div>dev by @7724(discod)</div>
+            <div>dev by @7724(discord)</div>
             <div class="social">
                 <a href="https://discord.gg/medicon" target="_blank">Discord</a>
-                <a href="#" style="color:#555;">Contact</a>
+                <a href="#" style="color:#72767d;">Contact</a>
             </div>
-            <div style="margin-top:0.5rem;font-size:0.65rem;color:#444;">
+            <div style="margin-top:0.5rem;font-size:0.65rem;color:#555;">
                 Support Server .gg/medicon
             </div>
         </div>
